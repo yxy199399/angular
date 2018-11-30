@@ -1,13 +1,20 @@
 <div class="card-group row" style="margin-top: 20px">
-  <div class="col-md-4 col-sm-4 col-lg-4" *ngFor="let product of products">
+  <div class="col-sm-12">
+    <div class="form-group">
+      <input class="form-control" placeholder="请输入商品名称" [formControl]="titleFilter">
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-4 col-lg-4" *ngFor="let product of products | filter:'title':keyword">
     <img class="card-img-top" src="http://placehold.it/320x150" alt="Card image cap">
     <div class="card-body">
       <h6 class="float-right">{{product.price}}</h6>
-      <h5 class="card-title">{{product.title}}</h5>
+      <h5 class="card-title">
+        <a [routerLink]="['/product', product.id]">{{product.title}}</a>
+      </h5>
       <p class="card-text">{{product.desc}}</p>
     </div>
     <div class="card-footer">
-      <app-stars [roting]="product.rating" ></app-stars>
+      <app-stars [rating]="product.rating" ></app-stars>
     </div>
   </div>
 </div>
