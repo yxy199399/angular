@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ProductService} from "../shared/product.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ProductService} from '../shared/product.service';
 
 @Component({
   selector: 'app-search',
@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
   }
   onSearch() {
     if (this.formModel.valid) {
-      console.log(this.formModel.value);
+      this.productService.searchEvent.emit(this.formModel.value);
     }
   }
 

@@ -1,5 +1,7 @@
+///<reference path="../../node_modules/@angular/common/src/location/hash_location_strategy.d.ts"/>
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,6 +17,8 @@ import { ProductService } from './shared/product.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './pipe/filter.pipe';
+import { WebSocketService } from './shared/web-socket.service';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 
 const routeConfig: Routes = [
@@ -39,9 +43,11 @@ const routeConfig: Routes = [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routeConfig),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, WebSocketService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule {  }

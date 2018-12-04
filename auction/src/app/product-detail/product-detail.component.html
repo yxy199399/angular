@@ -1,16 +1,22 @@
 <div>
   <img src="http://placehold.it/820x230">
   <div>
-    <h3 class="pull-right">{{product.price}}</h3>
-    <h4>{{product.title}}</h4>
-    <p>{{product.desc}}</p>
+    <h3 class="pull-right">{{product?.price}}</h3>
+    <h4>{{product?.title}}</h4>
+    <p>{{product?.desc}}</p>
   </div>
   <div>
-    <p class="pull-right">{{comments.length}}</p>
+    <p class="pull-right">{{comments?.length}}</p>
     <p>
-      <app-stars [rating]="product.rating"></app-stars>
+      <app-stars [rating]="product?.rating"></app-stars>
     </p>
   </div>
+</div>
+<div style="margin: 10px 0;">
+  <button class="btn btn-dark btn-lg" [class.active]="isWatched" (click)="watchProcuct()">
+    {{isWatched ? "取消关注" : "关注"}}
+  </button>
+  <label>最新出价{{currentBid | number:'.2-2'}}元</label>
 </div>
 <div>
   <div>
